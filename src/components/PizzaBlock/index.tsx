@@ -1,6 +1,6 @@
 import React from 'react'
 import plus from '../../assets/img/add.svg'
-import { IItems } from '../../types'
+import { IItems } from './types'
 
 export let curr = new Intl.NumberFormat('ru', {
     style: 'currency',

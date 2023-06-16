@@ -1,0 +1,22 @@
+.container {
+    &__search {
+        min-width: 200px;
+        height: 40px;
+        display: flex;
+        padding: 10px 5px 10px 10px;
+        border: 1px solid rgba(0, 0, 0, 0.5);
+        border-radius: 10px;
+        &--input {
+            border: none;
+            background: #fffaf0;
+            
+            &:focus {
+                opacity: 1;
+            }
+        }
+        &--closeInput {
+            width: 14px;
+            cursor: pointer;
+        }
+    }
+}

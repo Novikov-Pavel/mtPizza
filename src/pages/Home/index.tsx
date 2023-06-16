@@ -1,14 +1,17 @@
 import React from 'react'
-import Categories from '../components/Categories'
-import Sort from '../components/Sort'
-import PizzaBlock from '../components/PizzaBlock'
-import SkeletonPizzaBlock from '../components/PizzaBlock/SkeletonPizzaBlock'
-import Pagination from '../components/Pagination'
-import { IItems, TCategoriesArray, TItemsPerPage } from '../types'
-import '../SASS/app.scss'
+import Categories from '../../components/Categories'
+import Sort from '../../components/Sort/Sort'
+import PizzaBlock from '../../components/PizzaBlock'
+import SkeletonPizzaBlock from '../../components/PizzaBlock/SkeletonPizzaBlock'
+import Pagination from '../../components/Pagination'
+import { IItems } from '../../components/PizzaBlock/types'
+import { TCategoriesArray, TItemsPerPage } from './types'
+import { TSearchInput } from '../../components/Search/types'
+import '../../SASS/app.scss'
+import SkeletonPagination from '../../components/Pagination/SkeletonPagination'
 
-const Home = () => {
-  
+const Home = ({ searchInput, setSearchInput }: TSearchInput) => {
+
   const [items, setItems] = React.useState<IItems[]>([])
   const [page, setPage] = React.useState<number>(1)
   const [activeCategory, setActiveCategory] = React.useState<number>(0)
@@ -16,6 +19,7 @@ const Home = () => {
   const [sortAscDesc, setSortAscDesc] = React.useState<number>(0)
   const categories: TCategoriesArray = ['Все', 'Мясные', 'Вегетарианские', 'Гриль', 'Острые', 'Закрытые']
   const itemsPerPage: TItemsPerPage = ['4', '8', 'все']
+
   const [optionItem, setOptionItem] = React.useState<string>(itemsPerPage[0])
   let startItem = page * (+optionItem || 100) - (+optionItem || 100)
   let endItem = startItem + (+optionItem || 100)
@@ -37,7 +41,7 @@ const Home = () => {
 
   // достаём из локального хранилища данные и рендерим пиццы на странице
 
-  React.useEffect(() => { fetching() }, [optionItem])
+  React.useEffect(() => { fetching() }, [optionItem, searchInput])
 
   return (
     <div className="content">
@@ -64,6 +68,7 @@ const Home = () => {
         <div className="content__items">
           {items.length !== 0
             ? items
+              .filter(obj => obj.title.toLocaleLowerCase().includes(searchInput.toLocaleLowerCase()))
               .filter(obj => obj.category === (activeCategory || obj.category))
               .sort((a, b) =>
                 //  сортировка по популярности
@@ -96,16 +101,21 @@ const Home = () => {
           }
         </div>
         <ul className='pagination'>
-          <Pagination
-            page={page}
-            setPage={setPage}
-            items={items}
-            optionItem={optionItem}
-            activeCategory={activeCategory}
-          />
+          {items.length === 0
+            ? <SkeletonPagination />
+            : <Pagination
+              page={page}
+              setPage={setPage}
+              items={items}
+              optionItem={optionItem}
+              activeCategory={activeCategory}
+              searchInput={searchInput}
+              setSearchInput={setSearchInput}
+            />
+          }
         </ul>
       </div>
-    </div>
+    </div >
   )
 }
 

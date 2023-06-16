@@ -1,5 +1,5 @@
 import React from 'react'
-import { TCategories } from '../types'
+import { TCategories } from './types'
 
 function Categories({
     setActiveCategory,
@@ -14,7 +14,7 @@ function Categories({
                 {categories.map((e, i) => (
                     <li
                         key={e}
-                        className={activeCategory === i ? 'active' : ''}
+                        className={activeCategory === i ? 'active' : undefined}
                         onClick={() => {
                             setActiveCategory(i)
                             setPage(1)

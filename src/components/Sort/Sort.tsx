@@ -1,7 +1,7 @@
 import React from 'react'
 import Dropdown from 'react-dropdown'
-import sortUp from '../assets/img/sort.svg'
-import { TSort } from '../types'
+import sortUp from '../../assets/img/sort.svg'
+import { TSort } from './types'
 import "react-dropdown/style.css"
 
 function Sort({
