@@ -1,19 +1,21 @@
 import React from 'react'
 import Dropdown from 'react-dropdown'
 import sortUp from '../../assets/img/sort.svg'
-import { TSort } from './types'
+import { search } from '../../App'
 import "react-dropdown/style.css"
 
-function Sort({
-    sortPriceNamePopul,
-    setSortPriceNamePopul,
-    sortAscDesc,
-    setSortAscDesc,
-    optionItem,
-    setOptionItem,
-    setPage,
-    itemsPerPage
-}: TSort) {
+function Sort() {
+
+    const {
+        sortPriceNamePopul,
+        setSortPriceNamePopul,
+        sortAscDesc,
+        setSortAscDesc,
+        optionItem,
+        itemsPerPage,
+        setPage,
+        setOptionItem
+    } = React.useContext(search)
 
     const [sortPriceNamePopulStatus, setSortPriceNamePopulStatus] = React.useState<boolean>(false)
     const [sortAscDescStatus, setSortAscDescStatus] = React.useState<boolean>(false)

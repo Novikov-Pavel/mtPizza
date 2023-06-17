@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom'
 import { TSearchInput } from '../Search/types'
 import Search from '../Search'
 
-function Header({ searchInput, setSearchInput }: TSearchInput) {
+function Header() {
 
     return (
         <div className="header">
@@ -21,10 +21,7 @@ function Header({ searchInput, setSearchInput }: TSearchInput) {
                         </div>
                     </div>
                 </Link>
-                <Search
-                    searchInput={searchInput}
-                    setSearchInput={setSearchInput}
-                />
+                <Search />
                 <div className="header__cart">
                     <Link to={basket} className="button button--cart">
                         <span>{curr.format(520)}</span>
@@ -32,7 +29,7 @@ function Header({ searchInput, setSearchInput }: TSearchInput) {
                         <img src={basketImg} alt='корзина' />
                         <span>3</span>
                     </Link>
-                    S</div>
+                </div>
             </div>
         </div>
     )

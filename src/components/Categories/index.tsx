@@ -1,15 +1,10 @@
 import React from 'react'
-import { TCategories } from './types'
+import { search } from '../../App'
 
-function Categories({
-    setActiveCategory,
-    activeCategory,
-    categories,
-    setPage
-}: TCategories) {
-
+function Categories() {
+    const { setPage, categories, activeCategory, setActiveCategory } = React.useContext(search)
     return (
-        <div className="categories">
+        <div className="categories" >
             <ul>
                 {categories.map((e, i) => (
                     <li

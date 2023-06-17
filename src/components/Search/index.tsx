@@ -1,8 +1,9 @@
 import React from 'react'
 import closeInput from '../../assets/img/closeInput.svg'
-import {TSearchInput } from './types'
+import { search } from '../../App'
 
-const Search = ({searchInput, setSearchInput}: TSearchInput) => {
+const Search = () => {
+    const {searchInput, setSearchInput} = React.useContext(search)
     return (
         <form className='container__search'>
             <input

@@ -7,3 +7,12 @@ export interface IItems {
     category: number;
     rating: number;
 }
+export type TItems = {
+    items: IItems[];
+    setItems: React.Dispatch<React.SetStateAction<IItems[]>>
+};
+
+export type TOptionItem = {
+    optionItem: string;
+    setOptionItem: React.Dispatch<React.SetStateAction<string>>
+};

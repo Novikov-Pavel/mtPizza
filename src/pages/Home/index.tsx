@@ -4,23 +4,15 @@ import Sort from '../../components/Sort/Sort'
 import PizzaBlock from '../../components/PizzaBlock'
 import SkeletonPizzaBlock from '../../components/PizzaBlock/SkeletonPizzaBlock'
 import Pagination from '../../components/Pagination'
-import { IItems } from '../../components/PizzaBlock/types'
-import { TCategoriesArray, TItemsPerPage } from './types'
-import { TSearchInput } from '../../components/Search/types'
-import '../../SASS/app.scss'
 import SkeletonPagination from '../../components/Pagination/SkeletonPagination'
+import { search } from '../../App'
+import '../../SASS/app.scss'
 
-const Home = ({ searchInput, setSearchInput }: TSearchInput) => {
+const Home = () => {
+  const {
+    searchInput, page, categories, activeCategory, optionItem, items, setItems, sortPriceNamePopul, sortAscDesc } =
+    React.useContext(search)
 
-  const [items, setItems] = React.useState<IItems[]>([])
-  const [page, setPage] = React.useState<number>(1)
-  const [activeCategory, setActiveCategory] = React.useState<number>(0)
-  const [sortPriceNamePopul, setSortPriceNamePopul] = React.useState<number>(0)
-  const [sortAscDesc, setSortAscDesc] = React.useState<number>(0)
-  const categories: TCategoriesArray = ['Все', 'Мясные', 'Вегетарианские', 'Гриль', 'Острые', 'Закрытые']
-  const itemsPerPage: TItemsPerPage = ['4', '8', 'все']
-
-  const [optionItem, setOptionItem] = React.useState<string>(itemsPerPage[0])
   let startItem = page * (+optionItem || 100) - (+optionItem || 100)
   let endItem = startItem + (+optionItem || 100)
 
@@ -47,22 +39,8 @@ const Home = ({ searchInput, setSearchInput }: TSearchInput) => {
     <div className="content">
       <div className="container">
         <div className="content__top">
-          <Categories
-            setActiveCategory={setActiveCategory}
-            activeCategory={activeCategory}
-            categories={categories}
-            setPage={setPage}
-          />
-          <Sort
-            sortPriceNamePopul={sortPriceNamePopul}
-            setSortPriceNamePopul={setSortPriceNamePopul}
-            sortAscDesc={sortAscDesc}
-            setSortAscDesc={setSortAscDesc}
-            optionItem={optionItem}
-            setOptionItem={setOptionItem}
-            setPage={setPage}
-            itemsPerPage={itemsPerPage}
-          />
+          <Categories />
+          <Sort />
         </div>
         <h2 className="content__title">{categories[activeCategory]} пиццы</h2>
         <div className="content__items">
@@ -103,15 +81,7 @@ const Home = ({ searchInput, setSearchInput }: TSearchInput) => {
         <ul className='pagination'>
           {items.length === 0
             ? <SkeletonPagination />
-            : <Pagination
-              page={page}
-              setPage={setPage}
-              items={items}
-              optionItem={optionItem}
-              activeCategory={activeCategory}
-              searchInput={searchInput}
-              setSearchInput={setSearchInput}
-            />
+            : <Pagination />
           }
         </ul>
       </div>

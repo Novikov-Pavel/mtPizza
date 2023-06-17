@@ -1,16 +1,9 @@
 import React from 'react'
-import { TPagination } from './types'
-import { TSearchInput } from '../Search/types'
+import { search } from '../../App'
 
-function Pagination(
-    {
-        page,
-        setPage,
-        items,
-        optionItem,
-        activeCategory,
-        searchInput
-    }: TPagination & TSearchInput) {
+function Pagination() {
+
+    const { searchInput, items, optionItem, activeCategory, page, setPage } = React.useContext(search)
 
     let maxPage: number = Math.ceil(items
         .filter(e => e.title.toLocaleLowerCase().includes(searchInput.toLocaleLowerCase()))
