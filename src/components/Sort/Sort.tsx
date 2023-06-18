@@ -1,21 +1,21 @@
 import React from 'react'
 import Dropdown from 'react-dropdown'
 import sortUp from '../../assets/img/sort.svg'
-import { search } from '../../App'
 import "react-dropdown/style.css"
+import { AppDispatch, RootStore } from '../../Redux/store'
+import { useDispatch, useSelector } from 'react-redux'
+import { setOptionItem } from '../../Redux/Slices/optionItemSlice'
+import { setPage } from '../../Redux/Slices/pageSlice'
+import { setSortAscDesc } from '../../Redux/Slices/sortAscDescSlice'
+import { setSortPriceNamePopul } from '../../Redux/Slices/sortPriceNamePopulSlice'
 
 function Sort() {
 
-    const {
-        sortPriceNamePopul,
-        setSortPriceNamePopul,
-        sortAscDesc,
-        setSortAscDesc,
-        optionItem,
-        itemsPerPage,
-        setPage,
-        setOptionItem
-    } = React.useContext(search)
+    const dispatch: AppDispatch = useDispatch()
+    const sortPriceNamePopul = useSelector((store: RootStore) => store.sortPriceNamePopul.number)
+    const sortAscDesc = useSelector((store: RootStore) => store.sortAscDesc.number)
+    const optionItem = useSelector((store: RootStore) => store.optionItem.value)
+    const itemsPerPage = useSelector((store: RootStore) => store.itemsPerPage)
 
     const [sortPriceNamePopulStatus, setSortPriceNamePopulStatus] = React.useState<boolean>(false)
     const [sortAscDescStatus, setSortAscDescStatus] = React.useState<boolean>(false)
@@ -23,13 +23,13 @@ function Sort() {
     const sortAscDescMenu: string[] = ["возрастанию", "убыванию"]
 
     const onClickSortPriceNamePopul = (i: number) => {
-        setSortPriceNamePopul(i)
-        setSortAscDesc(0)
+        dispatch(setSortPriceNamePopul(i))
+        dispatch(setSortAscDesc(0))
         setSortPriceNamePopulStatus(false)
         setSortAscDescStatus(false)
     }
     const onClickSortAscDesc = (i: number) => {
-        setSortAscDesc(i)
+        dispatch(setSortAscDesc(i))
         setSortPriceNamePopulStatus(false)
         setSortAscDescStatus(false)
     }
@@ -63,8 +63,8 @@ function Sort() {
                     value={optionItem}
                     options={itemsPerPage}
                     onChange={(e) => {
-                        setOptionItem(e.value)
-                        setPage(1)
+                        dispatch(setOptionItem(e.value))
+                        dispatch(setPage(1))
                     }}
                     onFocus={() => {
                         setSortPriceNamePopulStatus(false)

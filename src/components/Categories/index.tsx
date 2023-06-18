@@ -1,8 +1,15 @@
 import React from 'react'
-import { search } from '../../App'
+import { AppDispatch, RootStore } from '../../Redux/store'
+import { useDispatch, useSelector } from 'react-redux'
+import { setActiveCategory } from '../../Redux/Slices/activeCategorySlice'
+import { setPage } from '../../Redux/Slices/pageSlice'
 
 function Categories() {
-    const { setPage, categories, activeCategory, setActiveCategory } = React.useContext(search)
+
+    const dispatch: AppDispatch = useDispatch()
+    const activeCategory = useSelector((store: RootStore) => store.activeCategory.value)
+    const categories = useSelector((store: RootStore) => store.categories.category)
+    
     return (
         <div className="categories" >
             <ul>
@@ -11,8 +18,8 @@ function Categories() {
                         key={e}
                         className={activeCategory === i ? 'active' : undefined}
                         onClick={() => {
-                            setActiveCategory(i)
-                            setPage(1)
+                            dispatch(setActiveCategory(i))
+                            dispatch(setPage(1))
                         }}
                     >{e}</li>
                 ))}

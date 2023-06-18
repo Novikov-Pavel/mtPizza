@@ -2,38 +2,34 @@ import React from 'react'
 import Categories from '../../components/Categories'
 import Sort from '../../components/Sort/Sort'
 import PizzaBlock from '../../components/PizzaBlock'
-import SkeletonPizzaBlock from '../../components/PizzaBlock/SkeletonPizzaBlock'
 import Pagination from '../../components/Pagination'
+import SkeletonPizzaBlock from '../../components/PizzaBlock/SkeletonPizzaBlock'
 import SkeletonPagination from '../../components/Pagination/SkeletonPagination'
-import { search } from '../../App'
+import { useDispatch, useSelector } from 'react-redux'
+import { AppDispatch, RootStore } from '../../Redux/store'
+import { fetching } from '../../Redux/Slices/fetchingSlice'
 import '../../SASS/app.scss'
 
-const Home = () => {
-  const {
-    searchInput, page, categories, activeCategory, optionItem, items, setItems, sortPriceNamePopul, sortAscDesc } =
-    React.useContext(search)
+const Home: React.FC = () => {
+
+  const dispatch: AppDispatch = useDispatch()
+  const categories = useSelector((store: RootStore) => store.categories.category)
+  const activeCategory = useSelector((store: RootStore) => store.activeCategory.value)
+  const page = useSelector((store: RootStore) => store.page.pageNumber)
+  const sortPriceNamePopul = useSelector((store: RootStore) => store.sortPriceNamePopul.number)
+  const sortAscDesc = useSelector((store: RootStore) => store.sortAscDesc.number)
+  const optionItem = useSelector((store: RootStore) => store.optionItem.value)
+  const items = useSelector((store: RootStore) => store.fetching.items)
+  const searchInput = useSelector((store: RootStore) => store.searchInput.value)
 
   let startItem = page * (+optionItem || 100) - (+optionItem || 100)
   let endItem = startItem + (+optionItem || 100)
 
-  // получение массива объектов пицц и запись их в локальное хранилище
-  async function fetching() {
-    try {
-      let res = await fetch('https://6480a069f061e6ec4d499bd9.mockapi.io/items')
-      if (res.ok) {
-        let data = await res.json()
-        localStorage.setItem('items', JSON.stringify(data))
-        setItems(JSON.parse(localStorage.getItem('items') || ''))
-      }
-    } catch (error) {
-      console.error('Возникла ошибка')
-      localStorage.clear()
-    }
-  }
-
   // достаём из локального хранилища данные и рендерим пиццы на странице
 
-  React.useEffect(() => { fetching() }, [optionItem, searchInput])
+  React.useEffect(() => {
+    dispatch(fetching())
+  }, [optionItem, searchInput, dispatch])
 
   return (
     <div className="content">

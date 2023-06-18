@@ -4,10 +4,9 @@ import basketImg from '../../assets/img/basketWhite.svg'
 import { curr } from '../PizzaBlock'
 import { basket, main } from '../../const'
 import { Link } from 'react-router-dom'
-import { TSearchInput } from '../Search/types'
 import Search from '../Search'
 
-function Header() {
+let Header: React.FC = () => {
 
     return (
         <div className="header">
