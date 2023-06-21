@@ -56,7 +56,7 @@ function Cart() {
                     <div className="cart__item-count">
                       <div className="button button--outline button--circle cart__item-count-minus">
                         {/* тут картинка минус */}
-                      </div>
+                      </div> 
                       <b>{e?.count}</b>
                       <div className="button button--outline button--circle cart__item-count-plus">
                         {/* тут картинка плюс */}
