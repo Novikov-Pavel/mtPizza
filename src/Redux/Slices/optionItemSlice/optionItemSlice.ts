@@ -1,10 +1,7 @@
-// import { useSelector } from "react-redux";
-// import { RootStore } from "../store";
 import { createSlice } from "@reduxjs/toolkit";
+import { initState } from "./types";
 
-// const itemsPerPage = useSelector((store: RootStore) => store.itemsPerPage);
-
-let initialState = {
+let initialState: initState = {
     value: '4',
 };
 

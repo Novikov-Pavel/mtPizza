@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
-// import { TCategories } from "../../components/Categories/types";
+import { initState } from "./types";
 
-const initialState = {
+const initialState: initState = {
     pageNumber: 1,
 };
 

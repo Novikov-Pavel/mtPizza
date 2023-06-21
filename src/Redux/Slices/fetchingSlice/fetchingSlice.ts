@@ -1,8 +1,6 @@
-import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { setItems } from "./itemsSlice";
-import { AppDispatch, RootStore } from "../store";
-import { useDispatch, useSelector } from "react-redux";
-import { IItems } from "../../components/PizzaBlock/types";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { IItems } from "./types";
+import { TItem } from "./types";
 
 export const fetching = createAsyncThunk<IItems[], undefined>(
     "items/fetching",
@@ -15,15 +13,12 @@ export const fetching = createAsyncThunk<IItems[], undefined>(
         }
         let data = await res.json();
         localStorage.setItem("items", JSON.stringify(data));
-        return JSON.parse(localStorage.getItem('items') || '')
+        return JSON.parse(localStorage.getItem("items") || "");
     }
 );
-interface item  {
-    items: IItems[]
-}
-let initialState: item = {
-    items: []
-}
+let initialState: TItem = {
+    items: [],
+};
 
 const fetchingSlice = createSlice({
     name: "items",

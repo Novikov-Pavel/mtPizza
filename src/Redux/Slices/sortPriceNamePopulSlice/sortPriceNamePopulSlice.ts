@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { initState } from "./types";
 
-const initialState = {
+const initialState: initState = {
     number: 0,
 };
 

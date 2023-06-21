@@ -7,13 +7,13 @@ import SkeletonPizzaBlock from '../../components/PizzaBlock/SkeletonPizzaBlock'
 import SkeletonPagination from '../../components/Pagination/SkeletonPagination'
 import { useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, RootStore } from '../../Redux/store'
-import { fetching } from '../../Redux/Slices/fetchingSlice'
+import { fetching } from '../../Redux/Slices/fetchingSlice/fetchingSlice'
 import '../../SASS/app.scss'
 
 const Home: React.FC = () => {
 
   const dispatch: AppDispatch = useDispatch()
-  const categories = useSelector((store: RootStore) => store.categories.category)
+  const categories = ["Все", "Мясные", "Вегетарианские", "Гриль", "Острые", "Закрытые"] as const
   const activeCategory = useSelector((store: RootStore) => store.activeCategory.value)
   const page = useSelector((store: RootStore) => store.page.pageNumber)
   const sortPriceNamePopul = useSelector((store: RootStore) => store.sortPriceNamePopul.number)

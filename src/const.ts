@@ -1,2 +1,4 @@
-export const main = '/'
-export const basket = '/cart'
+export enum route {
+    main = "/",
+    basket = "/cart",
+}

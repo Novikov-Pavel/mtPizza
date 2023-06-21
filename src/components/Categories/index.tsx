@@ -1,15 +1,15 @@
 import React from 'react'
 import { AppDispatch, RootStore } from '../../Redux/store'
 import { useDispatch, useSelector } from 'react-redux'
-import { setActiveCategory } from '../../Redux/Slices/activeCategorySlice'
-import { setPage } from '../../Redux/Slices/pageSlice'
+import { setActiveCategory } from '../../Redux/Slices/activeCategorySlice/activeCategorySlice'
+import { setPage } from '../../Redux/Slices/pageSlice/pageSlice'
 
 function Categories() {
 
     const dispatch: AppDispatch = useDispatch()
     const activeCategory = useSelector((store: RootStore) => store.activeCategory.value)
-    const categories = useSelector((store: RootStore) => store.categories.category)
-    
+    const categories = ["Все", "Мясные", "Вегетарианские", "Гриль", "Острые", "Закрытые"] as const
+
     return (
         <div className="categories" >
             <ul>

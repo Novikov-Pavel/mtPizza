@@ -1,18 +1,16 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, RootStore } from '../../Redux/store'
-import { setPage } from '../../Redux/Slices/pageSlice'
+import { setPage } from '../../Redux/Slices/pageSlice/pageSlice'
 
 let Pagination: React.FC = () => {
 
+    const dispatch: AppDispatch = useDispatch()
     const items = useSelector((store: RootStore) => store.fetching.items)
     const searchInput = useSelector((store: RootStore) => store.searchInput.value)
     const optionItem = useSelector((store: RootStore) => store.optionItem.value)
-    console.log(optionItem);
-    
     const activeCategory = useSelector((store: RootStore) => store.activeCategory.value)
     const page = useSelector((store: RootStore) => store.page.pageNumber)
-    const dispatch: AppDispatch = useDispatch()
     
     let maxPage: number = Math.ceil(items
         .filter(e => e.title.toLocaleLowerCase().includes(searchInput.toLocaleLowerCase()))

@@ -335,7 +335,7 @@ body {
 
         border-color: darken($color: $gray-line, $amount: 10);
 
-        span {
+        a {
           color: darken($color: $gray-line, $amount: 20);
           font-weight: 500;
           font-weight: 600;
@@ -345,7 +345,7 @@ body {
           background-color: darken($color: $gray-line, $amount: 90);
           border-color: darken($color: $gray-line, $amount: 90);
 
-          span {
+          a {
             color: $gray-line;
           }
         }

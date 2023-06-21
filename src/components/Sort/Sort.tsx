@@ -1,41 +1,53 @@
 import React from 'react'
 import Dropdown from 'react-dropdown'
 import sortUp from '../../assets/img/sort.svg'
-import "react-dropdown/style.css"
 import { AppDispatch, RootStore } from '../../Redux/store'
 import { useDispatch, useSelector } from 'react-redux'
-import { setOptionItem } from '../../Redux/Slices/optionItemSlice'
-import { setPage } from '../../Redux/Slices/pageSlice'
-import { setSortAscDesc } from '../../Redux/Slices/sortAscDescSlice'
-import { setSortPriceNamePopul } from '../../Redux/Slices/sortPriceNamePopulSlice'
+import { setOptionItem } from '../../Redux/Slices/optionItemSlice/optionItemSlice'
+import { setPage } from '../../Redux/Slices/pageSlice/pageSlice'
+import { setSortAscDesc } from '../../Redux/Slices/sortAscDescSlice/sortAscDescSlice'
+import { setSortPriceNamePopul } from '../../Redux/Slices/sortPriceNamePopulSlice/sortPriceNamePopulSlice'
+import { setSortAscDescStatus } from '../../Redux/Slices/sortAscDescStatusSlice/sortAscDescStatusSlice'
+import { setSortPriceNamePopulStatus } from '../../Redux/Slices/sortPriceNamePopulStatusSlice/sortPriceNamePopulStatusSlice'
+import "react-dropdown/style.css"
 
-function Sort() {
+let Sort: React.FC = () => {
+    const sortRef = React.useRef<HTMLDivElement>(null)
+    const sortPriceNamePopulMenu = ["популярности", "цене", "алфавиту"] as const
+    const sortAscDescMenu = ["возрастанию", "убыванию"] as const
+    const itemsPerPage: string[] = ["4", "8", "все"];
 
     const dispatch: AppDispatch = useDispatch()
     const sortPriceNamePopul = useSelector((store: RootStore) => store.sortPriceNamePopul.number)
     const sortAscDesc = useSelector((store: RootStore) => store.sortAscDesc.number)
     const optionItem = useSelector((store: RootStore) => store.optionItem.value)
-    const itemsPerPage = useSelector((store: RootStore) => store.itemsPerPage)
+    const sortPriceNamePopulStatus = useSelector((store: RootStore) => store.sortPriceNamePopulStatus.value)
+    const sortAscDescStatus = useSelector((store: RootStore) => store.sortAscDescStatus.value)
 
-    const [sortPriceNamePopulStatus, setSortPriceNamePopulStatus] = React.useState<boolean>(false)
-    const [sortAscDescStatus, setSortAscDescStatus] = React.useState<boolean>(false)
-    const sortPriceNamePopulMenu = ["популярности", "цене", "алфавиту"] as const
-    const sortAscDescMenu: string[] = ["возрастанию", "убыванию"]
-
+    const closeSorting = () => {
+        dispatch(setSortPriceNamePopulStatus(false))
+        dispatch(setSortAscDescStatus(false))
+    }
     const onClickSortPriceNamePopul = (i: number) => {
         dispatch(setSortPriceNamePopul(i))
         dispatch(setSortAscDesc(0))
-        setSortPriceNamePopulStatus(false)
-        setSortAscDescStatus(false)
+        closeSorting()
     }
     const onClickSortAscDesc = (i: number) => {
         dispatch(setSortAscDesc(i))
-        setSortPriceNamePopulStatus(false)
-        setSortAscDescStatus(false)
+        closeSorting()
     }
 
+    React.useEffect(() => {
+        const clickOutside = (e: any) => {
+            !e.composedPath().includes(sortRef.current) && closeSorting()
+        }
+        document.body.addEventListener('click', clickOutside)
+        return () => document.body.removeEventListener('click', clickOutside)
+    }, [])
+
     return (
-        <div className="sort">
+        <div ref={sortRef} className="sort">
             <div
                 className={!sortPriceNamePopulStatus && !sortAscDescStatus
                     ? "sort__label sort__label--rotate"
@@ -45,16 +57,16 @@ function Sort() {
                 <b>Сортировка по:</b>
                 {/* сортировка по популярности, цене или имени */}
                 <span onClick={() => {
-                    setSortPriceNamePopulStatus(!sortPriceNamePopulStatus)
-                    setSortAscDescStatus(false)
+                    dispatch(setSortPriceNamePopulStatus(!sortPriceNamePopulStatus))
+                    dispatch(setSortAscDescStatus(false))
                 }
                 }>{sortPriceNamePopulMenu[sortPriceNamePopul]}
                 </span>
                 и
                 {/* сортировка по возрастанию или убыванию */}
                 <span onClick={() => {
-                    setSortAscDescStatus(!sortAscDescStatus)
-                    setSortPriceNamePopulStatus(false)
+                    dispatch(setSortAscDescStatus(!sortAscDescStatus))
+                    dispatch(setSortPriceNamePopulStatus(false))
                 }
                 }>{sortAscDescMenu[sortAscDesc]}
                 </span>
@@ -67,8 +79,8 @@ function Sort() {
                         dispatch(setPage(1))
                     }}
                     onFocus={() => {
-                        setSortPriceNamePopulStatus(false)
-                        setSortAscDescStatus(false)
+                        dispatch(setSortPriceNamePopulStatus(false))
+                        dispatch(setSortAscDescStatus(false))
                     }}
                 />
             </div>
