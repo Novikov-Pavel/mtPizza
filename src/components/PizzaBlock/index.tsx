@@ -11,22 +11,22 @@ function PizzaBlock({ id, title, types, imageUrl, sizes }: IItems) {
     const dispatch: AppDispatch = useDispatch()
     const itemsById = useSelector((store: RootStore) => store.basket.items.filter(e => e.id === id))
     const currentCount = itemsById.reduce((sum, e) => e.count + sum, 0)
-
+    
+    const [activePrice, setActivePrice] = React.useState<number>(0)
     const [typesIndex, setTypesIndex] = React.useState<number>(0)
     const [sizeIndex, setSizeIndex] = React.useState<number>(0)
-    const [priceIndex, setPriceIndex] = React.useState<number>(0)
     const priceArr = useSelector((store: RootStore) => store.fetching.items.find(e => e.id === id))?.price
 
     const pizza = {
         id,
         title,
-        price: priceArr && priceIndex === 0 && typesIndex === 0
+        price: priceArr && activePrice === 0 && typesIndex === 0
             ? priceArr[0]
-            : priceArr && priceIndex === 0 && typesIndex === 1
+            : priceArr && activePrice === 0 && typesIndex === 1
                 ? priceArr && priceArr[0] * 1.1
-                : priceArr && priceIndex === 1 && typesIndex === 0
+                : priceArr && activePrice === 1 && typesIndex === 0
                     ? priceArr[1]
-                    : priceArr && priceIndex === 1 && typesIndex === 1
+                    : priceArr && activePrice === 1 && typesIndex === 1
                         ? priceArr && priceArr[1] * 1.1
                         : priceArr && priceArr[2] && typesIndex === 0
                             ? priceArr[2]
@@ -36,7 +36,8 @@ function PizzaBlock({ id, title, types, imageUrl, sizes }: IItems) {
         sizes: sizeIndex === 0 ? 26 : sizeIndex === 1 ? 30 : 40,
         count: 0
     }
-
+    // console.log(pizza)
+    
     return (
         <div className="pizza-block" >
             <img
@@ -59,18 +60,20 @@ function PizzaBlock({ id, title, types, imageUrl, sizes }: IItems) {
                         className={sizeIndex === i ? 'active' : undefined}
                         onClick={() => {
                             setSizeIndex(i)
-                            setPriceIndex(i)
+                            setActivePrice(i)
                         }}
                     >{smUnit(e)}</li>))}
                 </ul>
             </div>
             <div className="pizza-block__bottom">
                 {priceArr?.map((e, i) => (
-                    i === priceIndex &&
-                    <div className="pizza-block__price">{typesIndex === 0
-                        ? currRub.format(e)
-                        : currRub.format(e * 1.1)
-                    }</div>
+                    i === activePrice &&
+                    <div className="pizza-block__price">
+                        {typesIndex === 0
+                            ? currRub.format(e)
+                            : currRub.format(e * 1.1)
+                        }
+                    </div>
                 ))}
                 <div
                     onClick={() => dispatch(addPizza(pizza))}

@@ -9,6 +9,7 @@ import fetching from "./Slices/fetchingSlice/fetchingSlice";
 import sortPriceNamePopulStatus from "./Slices/sortPriceNamePopulStatusSlice/sortPriceNamePopulStatusSlice";
 import sortAscDescStatus from "./Slices/sortAscDescStatusSlice/sortAscDescStatusSlice";
 import basket from "./Slices/basket/basketSlice";
+import activePrice from "./Slices/activePriceSlice/index";
 
 export const store = configureStore({
     reducer: {
@@ -21,7 +22,8 @@ export const store = configureStore({
         fetching,
         sortPriceNamePopulStatus,
         sortAscDescStatus,
-        basket
+        basket,
+        activePrice
     },
 });
 

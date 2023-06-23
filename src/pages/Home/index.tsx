@@ -25,6 +25,8 @@ const Home: React.FC = () => {
   let startItem = page * (+optionItem || 100) - (+optionItem || 100)
   let endItem = startItem + (+optionItem || 100)
 
+  const activePrice = useSelector((store: RootStore) => store.activePrice.value)
+  
   // достаём из локального хранилища данные и рендерим пиццы на странице
 
   React.useEffect(() => {
@@ -52,9 +54,9 @@ const Home: React.FC = () => {
                     ? (b.rating - a.rating)
                     //  сортировка по цене
                     : sortPriceNamePopul === 1 && sortAscDesc === 0
-                      ? (a.price - b.price)
+                      ? (Math.min(...a.price) - Math.min(...b.price))
                       : sortPriceNamePopul === 1 && sortAscDesc === 1
-                        ? (b.price - a.price)
+                        ? (Math.min(...b.price) - Math.min(...a.price))
                         //  сортировка по алфавиту
                         : sortPriceNamePopul === 2 && sortAscDesc === 0
                           ? a.title.localeCompare(b.title)
