@@ -281,14 +281,6 @@ body {
         border-color: darken($color: $gray-line, $amount: 10);
       }
 
-      svg {
-        transform: rotate(45deg);
-
-        path {
-          fill: darken($color: $gray-line, $amount: 15);
-        }
-      }
-
       .button {
         svg {
           width: 11.5px;
@@ -298,7 +290,7 @@ body {
         &:hover,
         &:active {
           border-color: darken($color: $gray-line, $amount: 80);
-          background-color: darken($color: $gray-line, $amount: 80);
+          background-color: #fe5f1e;
         }
       }
     }

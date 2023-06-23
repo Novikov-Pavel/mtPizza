@@ -86,18 +86,18 @@ let Sort: React.FC = () => {
             </div>
             <div className="sort__popup">
                 <ul>
-                    {/* выбор сортировки по популярности, цене или имени из дропдауна */}
+                    {/* выбор сортировки по популярности, цене или имени из dropdown */}
                     {sortPriceNamePopulStatus && sortPriceNamePopulMenu.map((e, i) => (
                         <li
                             key={e}
-                            className={sortPriceNamePopul === i ? 'active' : ''}
+                            className={sortPriceNamePopul === i ? 'active' : undefined}
                             onClick={() => onClickSortPriceNamePopul(i)}
                         >{e}</li>))}
-                    {/* выбор сортировки по возрастанию или убыванию из дропдауна */}
+                    {/* выбор сортировки по возрастанию или убыванию из dropdown */}
                     {sortAscDescStatus && sortAscDescMenu.map((e, i) => (
                         <li
                             key={e}
-                            className={sortAscDesc === i ? 'active' : ''}
+                            className={sortAscDesc === i ? 'active' : undefined}
                             onClick={() => onClickSortAscDesc(i)}
                         >{e}</li>))}
                 </ul>

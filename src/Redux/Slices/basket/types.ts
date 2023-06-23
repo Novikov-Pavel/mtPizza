@@ -4,11 +4,11 @@ export type initState = {
 }
 
 export interface IPizza {
-    id?: number,
-    title?: string,
+    id: number,
+    title: string,
     price: number,
-    imageUrl?: string,
-    types?: string,
-    sizes?: string
+    imageUrl: string,
+    types: string,
+    sizes: string
     count: number
 }

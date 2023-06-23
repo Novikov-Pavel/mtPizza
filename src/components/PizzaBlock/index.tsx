@@ -1,26 +1,42 @@
 import React from 'react'
 import plus from '../../assets/img/add.svg'
 import { IItems } from '../../Redux/Slices/fetchingSlice/types'
-import { currRub } from '../../utils'
-import { AppDispatch, RootStore } from '../../Redux/store'
+import { currRub, smUnit } from '../../utils'
+import { AppDispatch, RootStore, store } from '../../Redux/store'
 import { useDispatch, useSelector } from 'react-redux'
 import { addPizza } from '../../Redux/Slices/basket/basketSlice'
 
-function PizzaBlock({ id, title, types, imageUrl, sizes, price }: IItems) {
+function PizzaBlock({ id, title, types, imageUrl, sizes }: IItems) {
+
     const dispatch: AppDispatch = useDispatch()
-    const currentItem = useSelector((store: RootStore) => store.basket.items.find(e => e.id === id))
+    const itemsById = useSelector((store: RootStore) => store.basket.items.filter(e => e.id === id))
+    const currentCount = itemsById.reduce((sum, e) => e.count + sum, 0)
 
     const [typesIndex, setTypesIndex] = React.useState<number>(0)
     const [sizeIndex, setSizeIndex] = React.useState<number>(0)
+    const [priceIndex, setPriceIndex] = React.useState<number>(0)
+    const priceArr = useSelector((store: RootStore) => store.fetching.items.find(e => e.id === id))?.price
+
     const pizza = {
         id,
         title,
-        price,
+        price: priceArr && priceIndex === 0 && typesIndex === 0
+            ? priceArr[0]
+            : priceArr && priceIndex === 0 && typesIndex === 1
+                ? priceArr && priceArr[0] * 1.1
+                : priceArr && priceIndex === 1 && typesIndex === 0
+                    ? priceArr[1]
+                    : priceArr && priceIndex === 1 && typesIndex === 1
+                        ? priceArr && priceArr[1] * 1.1
+                        : priceArr && priceArr[2] && typesIndex === 0
+                            ? priceArr[2]
+                            : priceArr && priceArr[2] * 1.1,
         imageUrl,
         types: typesIndex === 0 ? 'тонкое' : 'традиционное',
-        sizes: sizeIndex=== 0 ? 26 : sizeIndex=== 1 ? 30 : 40,
+        sizes: sizeIndex === 0 ? 26 : sizeIndex === 1 ? 30 : 40,
         count: 0
     }
+
     return (
         <div className="pizza-block" >
             <img
@@ -34,7 +50,6 @@ function PizzaBlock({ id, title, types, imageUrl, sizes, price }: IItems) {
                         key={e}
                         className={typesIndex === i ? 'active' : undefined}
                         onClick={() => { setTypesIndex(i) }
-
                         }
                     >{e === 0 ? 'тонкое' : 'традиционное'}</li>))}
                 </ul>
@@ -42,23 +57,31 @@ function PizzaBlock({ id, title, types, imageUrl, sizes, price }: IItems) {
                     {sizes.map((e, i) => (<li
                         key={e}
                         className={sizeIndex === i ? 'active' : undefined}
-                        onClick={() => setSizeIndex(i)}
-                    >{e} см.</li>))}
+                        onClick={() => {
+                            setSizeIndex(i)
+                            setPriceIndex(i)
+                        }}
+                    >{smUnit(e)}</li>))}
                 </ul>
             </div>
-            <div
-                onClick={() => dispatch(addPizza(pizza))}
-                className="pizza-block__bottom"
-            >
-                <div className="pizza-block__price">от {currRub.format(price)}</div>
-                <div className="button button--outline button--add">
+            <div className="pizza-block__bottom">
+                {priceArr?.map((e, i) => (
+                    i === priceIndex &&
+                    <div className="pizza-block__price">{typesIndex === 0
+                        ? currRub.format(e)
+                        : currRub.format(e * 1.1)
+                    }</div>
+                ))}
+                <div
+                    onClick={() => dispatch(addPizza(pizza))}
+                    className="button button--outline button--add"
+                >
                     <img src={plus} alt="plus" />
                     <span>Добавить</span>
-                    <i>{currentItem?.count || 0}</i>
+                    <i>{currentCount || 0}</i>
                 </div>
             </div>
         </div>
-
     )
 }
 

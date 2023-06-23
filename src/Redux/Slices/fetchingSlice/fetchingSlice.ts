@@ -16,6 +16,7 @@ export const fetching = createAsyncThunk<IItems[], undefined>(
         return JSON.parse(localStorage.getItem("items") || "");
     }
 );
+
 let initialState: TItem = {
     items: [],
 };
@@ -25,8 +26,8 @@ const fetchingSlice = createSlice({
     initialState,
     reducers: {},
     extraReducers: (builder) => {
-        builder.addCase(fetching.fulfilled, (state, action) => {
-            state.items = action.payload;
+        builder.addCase(fetching.fulfilled, (state, { payload }) => {
+            state.items = payload;
         });
     },
 });
