@@ -12,19 +12,23 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-
-    @media (max-width: 645px) {
-      // flex-direction: column;
-
-      .header {
-        &__logo {
-          > div {
-            display: none;
-          }
+  }
+  @media (max-width: 870px) {
+    .container {
+      flex-wrap: wrap;
+      gap: 20px;
+      &__search {
+        order: 2;
+        width: 100%;
+      }
+    }
+  }
+  @media (max-width: 520px) {
+    .header {
+      &__logo {
+        > div {
+          display: none;
         }
-        // &__cart {
-        //   margin-top: 20px;
-        // }
       }
     }
   }
