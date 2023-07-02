@@ -30,7 +30,7 @@ const Search: React.FC = () => {
                     src={closeInput}
                     alt="closeInput"
                     className='container__search--closeInput'
-                    onClick={() => {clearInput()}}
+                    onClick={() => { clearInput() }}
                 />
             }
         </form>)

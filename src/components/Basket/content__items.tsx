@@ -15,51 +15,55 @@ let Content__items = () => {
         <div className="content__items">
             {items &&
                 items.map(e => (
-                    <div className="cart__item">
-                        <div className="cart__item-img">
-                            <img
-                                className="pizza-block__image"
-                                src={e?.imageUrl}
-                                alt="Pizza"
-                            />
-                        </div>
-                        <div className="cart__item-info">
-                            <h3>{e?.title}</h3>
-                            <p>{e?.types}, {smUnit(Number(e.sizes))}</p>
-                        </div>
-                        <div className="cart__item-count">
-                            <div className="button button--outline button--circle cart__item-count-minus">
+                    <>
+                        <div className="cart__item">
+                            <div className="cart__item-img">
                                 <img
-                                    onClick={() => dispatch(DecPizza(e))}
-                                    src={minusImg}
-                                    alt='minus'
-                                    width={20}
+                                    className="pizza-block__image"
+                                    src={e?.imageUrl}
+                                    alt="Pizza"
                                 />
                             </div>
-                            <b>{e?.count}</b>
-                            <div className="button button--outline button--circle cart__item-count-plus">
-                                <img
-                                    onClick={() => dispatch(IncPizza(e))}
-                                    src={plusImg}
-                                    alt='plus'
-                                    width={20}
-                                />
+                            <div className="cart__item-info">
+                                <h3>{e?.title}</h3>
+                                <p>{e?.types}, {smUnit(Number(e.sizes))}</p>
                             </div>
                         </div>
-                        <div className="cart__item-price">
-                            <b>{currRub.format(e.price)}</b>
-                        </div>
-                        <div className="cart__item-remove">
-                            <div className="button button--outline button--circle">
-                                <img
-                                    onClick={() => dispatch(removePizza(e))}
-                                    src={deleteImg}
-                                    alt='deleteImg'
-                                    width={20}
-                                />
+                        <div className="cart__item">
+                            <div className="cart__item-count">
+                                <div className="button button--outline button--circle cart__item-count-minus">
+                                    <img
+                                        onClick={() => dispatch(DecPizza(e))}
+                                        src={minusImg}
+                                        alt='minus'
+                                        width={20}
+                                    />
+                                </div>
+                                <b>{e?.count}</b>
+                                <div className="button button--outline button--circle cart__item-count-plus">
+                                    <img
+                                        onClick={() => dispatch(IncPizza(e))}
+                                        src={plusImg}
+                                        alt='plus'
+                                        width={20}
+                                    />
+                                </div>
+                            </div>
+                            <div className="cart__item-price">
+                                <b>{currRub.format(e.price)}</b>
+                            </div>
+                            <div className="cart__item-remove">
+                                <div className="button button--outline button--circle">
+                                    <img
+                                        onClick={() => dispatch(removePizza(e))}
+                                        src={deleteImg}
+                                        alt='deleteImg'
+                                        width={20}
+                                    />
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </>
                 ))}
         </div>
     )

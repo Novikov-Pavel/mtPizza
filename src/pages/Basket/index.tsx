@@ -8,7 +8,7 @@ let Cart = () => {
     <div className="wrapper">
       <div className="content">
         <div className="container container--cart">
-          <div className="cart">
+          <div className="cart" data-testid='cart'>
             <Cart__top />
             <Content__items />
             <Cart__bottom />

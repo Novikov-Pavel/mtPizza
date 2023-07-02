@@ -2,7 +2,7 @@ import React from 'react'
 import Search from '../Search'
 import pizzaLogo from '../../../public/favicon.png'
 import basketImg from '../../assets/img/basketWhite.svg'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { route } from '../../const'
 import { currRub } from '../../utils'
 import { useSelector } from 'react-redux'
@@ -12,10 +12,11 @@ let Header: React.FC = () => {
     const { items, sum } = useSelector((store: RootStore) => store.basket)
     const countItemsInBasket = items.reduce((sum, e) => sum + e.count, 0)
     const sumOfBasket = items.reduce((sum, e) => sum + e.price * e.count, 0)
+    const { pathname } = useLocation()
     return (
         <div className="header">
             <div className="container">
-                <Link to={route.main}>
+                <Link to={route.main} data-testid='main'>
                     <div className="header__logo">
                         <img src={pizzaLogo} alt="Pizza logo" />
                         <div>
@@ -24,9 +25,9 @@ let Header: React.FC = () => {
                         </div>
                     </div>
                 </Link>
-                <Search />
+                {pathname !== route.basket && <Search />}
                 <div className="header__cart">
-                    <Link to={route.basket} className="button button--cart">
+                    <Link to={route.basket} className="button button--cart" data-testid='basket'>
                         <span>{currRub.format(sumOfBasket || sum)}</span>
                         <div className="button__delimiter"></div>
                         <img src={basketImg} alt='корзина' />

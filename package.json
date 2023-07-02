@@ -5,7 +5,8 @@
   "scripts": {
     "start": "set ENV_NODE=development&&webpack-dev-server",
     "dev": "set ENV_NODE=development&&webpack",
-    "prod": "set ENV_NODE=production&&webpack"
+    "prod": "set ENV_NODE=production&&webpack",
+    "test": "jest"
   },
   "keywords": [],
   "license": "ISC",
@@ -16,8 +17,6 @@
   ],
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.5",
-    "lodash.debounce": "^4.0.8",
-    "qs": "^6.11.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-dropdown": "^1.11.0",
@@ -32,6 +31,10 @@
     "@babel/preset-env": "^7.22.4",
     "@babel/preset-react": "^7.22.3",
     "@babel/preset-typescript": "^7.21.5",
+    "@testing-library/dom": "^9.3.1",
+    "@testing-library/react": "^14.0.0",
+    "@testing-library/user-event": "^14.4.3",
+    "@types/jest": "^29.5.2",
     "@types/react-dom": "^18.2.4",
     "@types/typescript": "^2.0.0",
     "babel-loader": "^9.1.2",
@@ -40,6 +43,7 @@
     "favicons-webpack-plugin": "^6.0.0",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.5.1",
+    "jest": "^29.5.0",
     "node-sass": "^9.0.0",
     "react-content-loader": "^6.2.1",
     "sass": "^1.62.1",
