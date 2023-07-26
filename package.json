@@ -2,10 +2,10 @@
   "name": "react-pizza-v2",
   "version": "1.0.0",
   "main": "index.tsx",
-  "homepage": "https://Novikov-Pavel.github.io/myPizza",
+  "homepage": "https://Novikov-Pavel.github.io/",
   "scripts": {
-    "predeploy": "npm run prod",
-    "deploy": "gh-pages -d prod",
+    "predeploy": "npm run dev",
+    "deploy": "gh-pages -d dist",
     "start": "set ENV_NODE=development&&webpack-dev-server",
     "dev": "set ENV_NODE=development&&webpack",
     "prod": "set ENV_NODE=production&&webpack",

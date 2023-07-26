@@ -1,3 +1,4 @@
 src/routesOLD.tsx
 src/assets/pizza.json
 node_modules
+dist
