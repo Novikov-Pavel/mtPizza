@@ -18,6 +18,7 @@
 ## Description
 
 Интернет магазин пиццы.
+
 1.Реализована витрина товаров.
 Можно выбрать тип пиццы, размер, тип теста.
 Есть сортировка по популярности, цене и алфавиту.
@@ -78,19 +79,15 @@
 2. Войти в корневой каталог и написать в терминале npm start
 3. Запустится браузер с веб-приложением.
 
-## License
-
-<a href="https://choosealicense.com/licenses/unlicense/"><img src="https://raw.githubusercontent.com/johnturner4004/readme-generator/master/src/components/assets/images/unlicense.svg" height=40 />The Unlicense</a>
-
 ## Acknowledgements
 
 Разрабатывал самостоятельно
 
 ## Contacts
 
-<a href="https://www.linkedin.com/in/Novikoff-Pavel">
+<a href="https://www.linkedin.com/in/Novikoff-Pavel" target="_blank">
   <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" />
 </a>  
-<a href="mailto:react@jobfrontend.ru">
+<a href="mailto:react@jobfrontend.ru" target="_blank">
   <img src=https://raw.githubusercontent.com/johnturner4004/readme-generator/master/src/components/assets/images/email_me_button_icon_151852.svg />
 </a>
