@@ -10,8 +10,6 @@
 - [Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
-- [Usage](#usage)
-- [License](#license)
 - [Acknowledgements](#acknowledgements)
 - [Contacts](#contacts)
 
@@ -37,33 +35,37 @@
 
 ## Built With
 
-<a href="https://developer.mozilla.org/en-US/docs/Web/CSS">
-  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original.svg" height="40px" width="40px" />
-</a>
-<a href="https://developer.mozilla.org/en-US/docs/Web/HTML">
-  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original.svg" height="40px" width="40px" />
-</a>
-<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript">
-  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" height="40px" width="40px" />
-</a>
-<a href="https://jestjs.io/">
-  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/jest/jest-plain.svg" height="40px" width="40px" />
-</a>
-<a href="https://nodejs.org/en/">
-  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original.svg" height="40px" width="40px" />
+<a href="https://www.typescriptlang.org/">
+  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/typescript/typescript-original.svg" height="40px" width="40px" alt="Typescript" />
 </a>
 <a href="https://reactjs.org/">
-  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original-wordmark.svg" height="40px" width="40px" />
+  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original-wordmark.svg" height="40px" width="40px" alt="ReactJS" />
 </a>
 <a href="https://redux.js.org/">
-  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/redux/redux-original.svg" height="40px" width="40px" />
+  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/redux/redux-original.svg" height="40px" width="40px" alt="Redux" />
 </a>
 <a href="https://sass-lang.com/">
-  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/sass/sass-original.svg" height="40px" width="40px" />
+  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/sass/sass-original.svg" height="40px" width="40px" alt="SASS" />
 </a>
-<a href="https://www.typescriptlang.org/">
-  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/typescript/typescript-original.svg" height="40px" width="40px" />
+<a href="https://developer.mozilla.org/en-US/docs/Web/CSS">
+  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original.svg" height="40px" width="40px" alt="CSS" />
 </a>
+<a href="https://developer.mozilla.org/en-US/docs/Web/HTML">
+  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original.svg" height="40px" width="40px" alt="HTML" />
+</a>
+<a href="https://jestjs.io/">
+  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/jest/jest-plain.svg" height="40px" width="40px" alt="JestJS" />
+</a>
+<a href="https://testing-library.com/">
+  <img src="https://testing-library.com/img/octopus-64x64.png" height="40px" width="40px" alt="RTL"/>
+</a>
+<a href="https://webpack.js.org/">
+  <img src="https://logojinni.com/image/logos/webpack-icon.svg" height="40px" width="40px" alt="webpack" />
+</a>
+<a href="https://nodejs.org/en/">
+  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original.svg" height="40px" width="40px" alt="nodeJS" />
+</a>
+
 
 ## Getting Started
 
